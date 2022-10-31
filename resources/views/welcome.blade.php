@@ -49,7 +49,7 @@
         justify-content: center;
         height: 40px;
         margin-bottom: 5px;
-        letter-spacing: 6px;
+        margin-top: 15px;
     }
 
     .container {
@@ -57,6 +57,7 @@
         grid-template-columns: repeat(4, 1fr);
         gap: 10px;
         margin-bottom: 1rem;
+        margin-top: 1rem
     }
 
     .card {
@@ -125,12 +126,15 @@
         align-items: center;
         justify-content: space-between;
         height: 55px;
+        flex-wrap: wrap;
+        gap: 7px
     }
 
+    .option .add_mod,
     .option .add {
         font-size: 13px;
         border: 1px solid #ddd;
-        padding: 5px 15px;
+        padding: 0 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -139,6 +143,39 @@
         border-radius: 5px;
         color: #fff;
         letter-spacing: 2px;
+        position: relative;
+        height: 30px;
+    }
+
+    .option .add_mod {
+        padding: 0;
+        width: 160px;
+        border: 1px solid #444;
+        overflow: hidden;
+    }
+
+    .add_mod input {
+        position: absolute;
+        height: 100%;
+        width: calc(100% - 25px);
+        left: 0;
+        padding-left: 5px;
+        border: none;
+        outline: none;
+    }
+
+    .add_mod button {
+        background: yellow;
+        width: 25px;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        border: none;
+        outline: none;
+    }
+
+    .add_mod button i {
+        background: none
     }
 
     .option h3 {
@@ -197,6 +234,10 @@
     @media (max-width:600px) {
         .container {
             grid-template-columns: repeat(2, 1fr);
+        }
+
+       .option .add_mod {
+            width: 100%
         }
     }
 

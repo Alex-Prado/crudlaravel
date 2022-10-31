@@ -3,6 +3,16 @@
     <div class="option">
         <h3>Operarios</h3>
         <a class="add" href="{{ route('contact.create') }}"><i class="fa-light fa-user"></i>ADD NEW</a>
+
+    </div>
+    <div class="option">
+        <a class="add" href="{{ route('export', ['dato' => $dato]) }}">EXPORT DATA</a>
+        <a class="add" href="">IMPORT DATA</a>
+        <form action="{{ route('contact.filtro') }}" method="POST" class="add_mod">
+            @csrf
+            <input type="text" name="nombre" placeholder="Search...">
+            <button type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
+        </form>
     </div>
 
     @if (count($contactos) > 0)

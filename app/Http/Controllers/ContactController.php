@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ContactExport;
 use App\Models\Area;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -14,7 +16,25 @@ class ContactController extends Controller
         $contactos = Contact::select('contacts.*', 'areas.nombrearea')
             ->join('areas', 'contacts.area_id', '=', 'areas.id')
             ->get();
-        return view('contact.index', compact('contactos'));
+
+        return view('contact.index', ['contactos' => $contactos, 'dato' => 0]);
+    }
+    public function filtro(Request $request)
+    {
+        if ($request->nombre !== null) {
+            $contactos = Contact::select('contacts.*', 'areas.nombrearea')
+                ->join('areas', 'contacts.area_id', '=', 'areas.id')
+                ->where('contacts.nombre', 'like', '%' . $request->nombre . '%')
+                ->orWhere('contacts.apellido', 'like', '%' . $request->nombre . '%')
+                ->orWhere('contacts.telefono', 'like', '%' . $request->nombre . '%')
+                ->orWhere('areas.nombrearea', 'like', '%' . $request->nombre . '%')
+                ->get();
+        } else {
+            $contactos = Contact::select('contacts.*', 'areas.nombrearea')
+                ->join('areas', 'contacts.area_id', '=', 'areas.id')
+                ->get();
+        }
+        return view('contact.index', ['contactos' => $contactos, 'dato' => $request->nombre]);
     }
     public function create()
     {
@@ -52,5 +72,9 @@ class ContactController extends Controller
     {
         Contact::find($contact->id)->delete();
         return redirect()->route('contact.index')->with('mensaje', 'contacto eliminado');
+    }
+    public function export($dato)
+    {
+        return Excel::download(new ContactExport($dato), 'contacto.xlsx');
     }
 }
