@@ -161,6 +161,10 @@
         background: none
     }
 
+    .add_mod .file{
+        color: #222;
+    }
+
     .add_mod input {
         position: absolute;
         height: 100%;

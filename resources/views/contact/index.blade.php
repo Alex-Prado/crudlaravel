@@ -9,7 +9,7 @@
         <a class="add" href="{{ route('export', ['dato' => $dato]) }}">EXPORT DATA</a>
         <form action="{{route('contact-import')}}" class="add_mod" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="file" name="file">
+            <input type="file" class="file" name="file">
             <button class="import">IMPORT</button>
         </form>
         <form action="{{ route('contact.filtro') }}" method="POST" class="add_mod">
