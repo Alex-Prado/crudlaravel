@@ -17,8 +17,8 @@
                     <form action="{{ route('contact.destroy', ['contact' => $contact]) }}" method="post">
                         @method('DELETE')
                         @csrf
-                        <a class="btn" href="{{ route('contact.show', ['contact' => $contact]) }}">VIEW</a>
-                        <button class="btn" type="submit">DELETE</button>
+                        <a class="btn edit" href="{{ route('contact.show', ['contact' => $contact]) }}">VIEW</a>
+                        <button class="btn delete" type="submit">DELETE</button>
                     </form>
                 </div>
             @endforeach

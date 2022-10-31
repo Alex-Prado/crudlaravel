@@ -59,6 +59,14 @@
         color: #ffff;
         text-transform: uppercase;
     }
+
+    .edit {
+        background-color: darkgreen;
+    }
+
+    .delete {
+        background-color: darkred;
+    }
 </style>
 
 <body>

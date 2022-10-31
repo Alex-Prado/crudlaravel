@@ -13,8 +13,8 @@
                     <form action="{{ route('area.destroy', ['area' => $area]) }}" method="post">
                         @method('DELETE')
                         @csrf
-                        <a class="btn" href="{{ route('area.show', ['area' => $area]) }}">view</a>
-                        <button class="btn" type="submit">DELETE</button>
+                        <a class="btn edit" href="{{ route('area.show', ['area' => $area]) }}">view</a>
+                        <button class="btn delete" type="submit">DELETE</button>
                     </form>
                 </div>
             @endforeach
