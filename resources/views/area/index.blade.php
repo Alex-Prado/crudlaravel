@@ -14,7 +14,7 @@
                     <div class="card-name">
                         <h4>{{ $area->nombrearea }}</h4>
                     </div>
-                    <form action="{{ route('area.destroy', ['area' => $area]) }}" method="post">
+                    <form action="{{ route('area.destroy', ['area' => $area]) }}" method="post" class="form-option">
                         @method('DELETE')
                         @csrf
                         <a class="btn edit" href="{{ route('area.show', ['area' => $area]) }}"><i

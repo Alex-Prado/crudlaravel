@@ -90,10 +90,15 @@
         text-transform: capitalize;
     }
 
+    .form-option {
+        width: 100%;
+        display: flex;
+    }
+
     .btn {
         border: 1px solid #ddd;
         outline: none;
-        width: 100px;
+        width: 50%;
         font-size: 12px;
         height: 30px;
         display: inline-flex;

@@ -20,7 +20,8 @@
                         <p class="area">{{ $contact->nombrearea }}</p>
                         <p class="phone">{{ $contact->telefono }}</p>
                     </div>
-                    <form action="{{ route('contact.destroy', ['contact' => $contact]) }}" method="post">
+                    <form action="{{ route('contact.destroy', ['contact' => $contact]) }}" method="post"
+                        class="form-option">
                         @method('DELETE')
                         @csrf
                         <a class="btn edit" href="{{ route('contact.show', ['contact' => $contact]) }}"><i
