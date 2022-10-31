@@ -8,7 +8,199 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>LARAVEL</title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+    @import url("https://kit-pro.fontawesome.com/releases/v6.1.1/css/pro.min.css");
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Quicksand', sans-serif;
+        text-decoration: none;
+        list-style: none;
+    }
+
+    section {
+        width: min(96%, 1200px);
+        margin: auto;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 45px;
+        border-bottom: 1px solid #555;
+    }
+
+    ul li a {
+        color: #222;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;
+    }
+
+    .mensaje {
+        background: yellow;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        margin-bottom: 5px;
+        letter-spacing: 6px;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .card {
+        border: 1px solid #666;
+        padding: 5px;
+        text-align: center;
+        min-height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card-other>* {
+        font-size: 13px;
+        text-transform: uppercase;
+    }
+
+    .card-other .area {
+        letter-spacing: 2px;
+    }
+
+    .card-name {
+        letter-spacing: 2px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        text-transform: capitalize;
+    }
+
+    .btn {
+        border: 1px solid #ddd;
+        outline: none;
+        width: 100px;
+        font-size: 12px;
+        height: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+        background-color: #222;
+        color: #ffff;
+        text-transform: uppercase;
+        border-radius: 5px;
+    }
+
+    .edit {
+        background-color: darkgreen;
+    }
+
+    .delete {
+        background-color: darkred;
+    }
+
+    .option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 55px;
+    }
+
+    .option .add {
+        font-size: 13px;
+        border: 1px solid #ddd;
+        padding: 5px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: #222;
+        border-radius: 5px;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+    .option h3 {
+        letter-spacing: 5px;
+    }
+
+    .add i {
+        font-size: 10px;
+    }
+
+    .form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-content {
+        width: 280px;
+        height: 40px;
+        position: relative;
+        border: 1px solid #888;
+    }
+
+    .form-select,
+    .form-btn,
+    .form-input {
+        border: none;
+        outline: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .form-select,
+    .form-input {
+        padding-left: 10px;
+    }
+
+    .form-btn {
+        cursor: pointer;
+        background-color: blue;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+    @media (max-width:900px) {
+        .container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width:600px) {
+        .container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width:400px) {
+        .container {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
 
 <body>
     <section>
