@@ -6,8 +6,11 @@ use App\Exports\ContactExport;
 use App\Imports\ContactImport;
 use App\Models\Area;
 use App\Models\Contact;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+// use Barryvdh\DomPDF\PDF;
+// use PDF;
 
 class ContactController extends Controller
 {
@@ -76,8 +79,16 @@ class ContactController extends Controller
     }
     public function import()
     {
-        // dd('llego');
         Excel::import(new ContactImport, request()->file('file'));
         return back();
+    }
+
+    public function generarPdf()
+    {
+        $contactos = Contact::select('contacts.*', 'areas.nombrearea')
+            ->join('areas', 'contacts.area_id', '=', 'areas.id')
+            ->get();
+        $pdf = Pdf::loadView('contact.index', ['contactos' => $contactos, 'dato' => 0]);
+        return $pdf->download('genera.pdf');
     }
 }

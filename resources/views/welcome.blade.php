@@ -194,7 +194,7 @@
         outline: none;
         padding: 0 5px;
         background-color: #222;
-        color:#fff;
+        color: #fff;
     }
 
     .option h3 {
@@ -257,6 +257,10 @@
 
         .option .add_mod {
             width: 100%
+        }
+
+        .option {
+            height: initial;
         }
 
         .option_mod {
