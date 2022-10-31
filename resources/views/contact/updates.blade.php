@@ -2,7 +2,7 @@
 @section('content')
     <h2>actualizar contacto</h2>
     @foreach ($contactos as $contacto)
-        <form action="{{ route('contact.update') }}" method="POST">
+        <form action="{{ route('contact.update', ['contact' => $contacto]) }}" method="POST">
             @method('PATCH')
             @csrf
             <input type="text" name="nombre" placeholder="nombre" value="{{ $contacto->nombre }}">
