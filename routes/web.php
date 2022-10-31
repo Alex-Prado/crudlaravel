@@ -11,10 +11,11 @@ Route::get('/', function () {
 });
 Route::resource('contact', ContactController::class);
 
-Route::post('contacto', [ContactController::class, 'filtro'])->name('contact.filtro');
+Route::post('contact/filtro', [ContactController::class, 'filtro'])->name('contact.filtro');
 
 Route::resource('area', AreaController::class);
 
 Route::controller(ContactController::class)->group(function () {
     Route::get('export/{dato?}', 'export')->name('export');
+    Route::post('contact.import', 'import')->name('contact-import');
 });

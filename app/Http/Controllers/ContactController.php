@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ContactExport;
+use App\Imports\ContactImport;
 use App\Models\Area;
 use App\Models\Contact;
 use Illuminate\Http\Request;
@@ -30,9 +31,8 @@ class ContactController extends Controller
                 ->orWhere('areas.nombrearea', 'like', '%' . $request->nombre . '%')
                 ->get();
         } else {
-            $contactos = Contact::select('contacts.*', 'areas.nombrearea')
-                ->join('areas', 'contacts.area_id', '=', 'areas.id')
-                ->get();
+
+            return redirect()->route('contact.index');
         }
         return view('contact.index', ['contactos' => $contactos, 'dato' => $request->nombre]);
     }
@@ -60,14 +60,11 @@ class ContactController extends Controller
         $areas = Area::all();
         return view('contact.updates', ['contactos' => $contacto, 'areas' => $areas]);
     }
-
-
     public function update(Request $request, Contact $contact)
     {
         $contact->update($request->all());
         return redirect()->route('contact.index')->with('mensaje', 'contacto actualizado');
     }
-
     public function destroy(Contact $contact)
     {
         Contact::find($contact->id)->delete();
@@ -76,5 +73,11 @@ class ContactController extends Controller
     public function export($dato)
     {
         return Excel::download(new ContactExport($dato), 'contacto.xlsx');
+    }
+    public function import()
+    {
+        // dd('llego');
+        Excel::import(new ContactImport, request()->file('file'));
+        return back();
     }
 }

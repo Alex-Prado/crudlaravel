@@ -5,13 +5,17 @@
         <a class="add" href="{{ route('contact.create') }}"><i class="fa-light fa-user"></i>ADD NEW</a>
 
     </div>
-    <div class="option">
+    <div class="option option_mod">
         <a class="add" href="{{ route('export', ['dato' => $dato]) }}">EXPORT DATA</a>
-        <a class="add" href="">IMPORT DATA</a>
+        <form action="{{route('contact-import')}}" class="add_mod" method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file">
+            <button class="import">IMPORT</button>
+        </form>
         <form action="{{ route('contact.filtro') }}" method="POST" class="add_mod">
             @csrf
             <input type="text" name="nombre" placeholder="Search...">
-            <button type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
+            <button class="search" type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
         </form>
     </div>
 

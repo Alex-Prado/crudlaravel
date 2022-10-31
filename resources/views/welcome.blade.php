@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <title>LARAVEL</title>
 </head>
 <style>
@@ -130,6 +130,12 @@
         gap: 7px
     }
 
+    .option_mod {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: initial;
+    }
+
     .option .add_mod,
     .option .add {
         font-size: 13px;
@@ -144,14 +150,15 @@
         color: #fff;
         letter-spacing: 2px;
         position: relative;
-        height: 30px;
+        height: 35px;
     }
 
     .option .add_mod {
         padding: 0;
-        width: 160px;
+        /* width: 160px; */
         border: 1px solid #444;
         overflow: hidden;
+        background: none
     }
 
     .add_mod input {
@@ -164,9 +171,9 @@
         outline: none;
     }
 
-    .add_mod button {
-        background: yellow;
-        width: 25px;
+    .add_mod .search {
+        background: #222;
+        width: 30px;
         position: absolute;
         right: 0;
         height: 100%;
@@ -174,8 +181,20 @@
         outline: none;
     }
 
-    .add_mod button i {
-        background: none
+    .add_mod .search i {
+        background: none;
+        color: #fff;
+    }
+
+    .add_mod .import {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        border: none;
+        outline: none;
+        padding: 0 5px;
+        background-color: #222;
+        color:#fff;
     }
 
     .option h3 {
@@ -236,8 +255,13 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
-       .option .add_mod {
+        .option .add_mod {
             width: 100%
+        }
+
+        .option_mod {
+            display: flex;
+            flex-wrap: wrap;
         }
     }
 
