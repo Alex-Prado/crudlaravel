@@ -1,10 +1,18 @@
 @extends('welcome')
 @section('content')
-    <h1>actualizar area</h1>
-    <form action="{{ route('area.update', ['area' => $area]) }}" method="POST">
+    <div class="option">
+
+        <h3>actualizar area</h3>
+    </div>
+    <form action="{{ route('area.update', ['area' => $area]) }}" method="POST" class="form">
         @method('PATCH')
         @csrf
-        <input type="text" name="nombrearea" placeholder="nombre del area" value="{{ $area->nombrearea }}">
-        <button type="submit">actualizar</button>
+        <div class="form-content">
+            <input type="text" class="form-input" name="nombrearea" placeholder="nombre del area"
+                value="{{ $area->nombrearea }}">
+        </div>
+        <div class="form-content">
+            <button class="form-btn" type="submit">UPDATE</button>
+        </div>
     </form>
 @endsection

@@ -1,19 +1,37 @@
 @extends('welcome')
 @section('content')
-    <h2>actualizar contacto</h2>
+    <div class="option">
+        <h3>actualizar contacto</h3>
+    </div>
     @foreach ($contactos as $contacto)
-        <form action="{{ route('contact.update', ['contact' => $contacto]) }}" method="POST">
+        <form action="{{ route('contact.update', ['contact' => $contacto]) }}" method="POST" class="form">
             @method('PATCH')
             @csrf
-            <input type="text" name="nombre" placeholder="nombre" value="{{ $contacto->nombre }}">
-            <input type="text" name="apellido" placeholder="apellido" value="{{ $contacto->apellido }}">
-            <input type="text" name="telefono" placeholder="telefono" value="{{ $contacto->telefono }}">
-            <select name="area_id" value='{{ $contacto->nombrearea }}'>
-                @foreach ($areas as $area)
-                    <option value="{{ $area->id }}">{{ $area->nombrearea }}</option>
-                @endforeach
-            </select>
-            <button type="submit">actualizar</button>
+            <div class="form-content">
+
+                <input type="text" class="form-input" name="nombre" placeholder="nombre" value="{{ $contacto->nombre }}">
+            </div>
+            <div class="form-content">
+
+                <input type="text" class="form-input" name="apellido" placeholder="apellido"
+                    value="{{ $contacto->apellido }}">
+            </div>
+            <div class="form-content">
+
+                <input type="text" class="form-input" name="telefono" placeholder="telefono"
+                    value="{{ $contacto->telefono }}">
+            </div>
+            <div class="form-content">
+
+                <select name="area_id" class="form-select" value='{{ $contacto->nombrearea }}'>
+                    @foreach ($areas as $area)
+                        <option value="{{ $area->id }}">{{ $area->nombrearea }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-content">
+                <button class="form-btn" type="submit">UPDATE</button>
+            </div>
         </form>
     @endforeach
 @endsection

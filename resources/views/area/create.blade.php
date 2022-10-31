@@ -1,9 +1,15 @@
 @extends('welcome')
 @section('content')
-    <h1>crear area</h1>
-    <form action="{{ route('area.store') }}" method="POST">
+    <div class="option">
+        <h3>crear area</h3>
+    </div>
+    <form action="{{ route('area.store') }}" method="POST" class="form">
         @csrf
-        <input type="text" name="nombrearea" placeholder="nombre del area">
-        <button type="submit">CREAR</button>
+        <div class="form-content">
+            <input type="text" class="form-input" name="nombrearea" placeholder="nombre del area">
+        </div>
+        <div class="form-content">
+            <button class="form-btn" type="submit">CREATE</button>
+        </div>
     </form>
 @endsection
