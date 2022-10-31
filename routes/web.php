@@ -10,7 +10,8 @@ Route::get('/', function () {
     return redirect()->route('contact.index');
 });
 Route::resource('contact', ContactController::class);
-Route::post('contact', [ContactController::class, 'filtro'])->name('contact.filtro');
+
+Route::post('contacto', [ContactController::class, 'filtro'])->name('contact.filtro');
 
 Route::resource('area', AreaController::class);
 
