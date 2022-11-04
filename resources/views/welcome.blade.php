@@ -21,6 +21,30 @@
         list-style: none;
     }
 
+
+    input[type="file"] {
+        opacity: 0;
+        background: none;
+        z-index: 5;
+        display: inline-block;
+    }
+
+    .file-csv {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: green;
+        color: #fff;
+        font-size: 18px;
+    }
+
+
+
+    /* ------------------ */
     section {
         width: min(96%, 1200px);
         margin: auto;
@@ -64,7 +88,7 @@
         border: 1px solid #666;
         padding: 5px;
         text-align: center;
-        min-height: 160px;
+        min-height: 150px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -137,7 +161,7 @@
     }
 
     .option .add_mod,
-    .option .add {
+    .option-btn .add {
         font-size: 13px;
         border: 1px solid #ddd;
         padding: 0 15px;
@@ -153,6 +177,11 @@
         height: 35px;
     }
 
+    .option-btn {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .option .add_mod {
         padding: 0;
         /* width: 160px; */
@@ -161,7 +190,7 @@
         background: none
     }
 
-    .add_mod .file{
+    .add_mod .file {
         color: #222;
     }
 
@@ -203,6 +232,9 @@
 
     .option h3 {
         letter-spacing: 5px;
+        /* margin: 2rem; */
+        text-align: center;
+        width: 100%;
     }
 
     .add i {
@@ -214,7 +246,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 5px;
+        gap: 15px;
     }
 
     .form-content {
@@ -248,6 +280,13 @@
         letter-spacing: 2px;
     }
 
+    .validate-error {
+        color: red;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+
     @media (max-width:900px) {
         .container {
             grid-template-columns: repeat(3, 1fr);
@@ -259,13 +298,18 @@
             grid-template-columns: repeat(2, 1fr);
         }
 
+        .option-btn,
         .option .add_mod {
             width: 100%
         }
 
-        .option {
-            height: initial;
+        .add_mod .search {
+            width: 50px
         }
+
+        /* .option {
+            height: initial;
+        } */
 
         .option_mod {
             display: flex;

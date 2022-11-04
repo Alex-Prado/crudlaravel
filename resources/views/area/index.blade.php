@@ -2,8 +2,11 @@
 @section('content')
     <div class="option">
         <h3>Areas</h3>
+
+    </div>
+    <div class="option-btn">
         <a class="add" href="{{ route('area.create') }}"><i class="fa-light fa-user"></i>ADD NEW</a>
-        <a class="add" href="{{route('generar-pdf')}}">PDF CONTACTOS</a>
+        <a class="add" href="{{ route('generar-pdf') }}">PDF CONTACTOS</a>
     </div>
     @if (session('mensaje'))
         <h4 class="mensaje">{{ session('mensaje') }}</h4>

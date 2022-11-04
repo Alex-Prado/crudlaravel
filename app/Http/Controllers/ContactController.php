@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Contact;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 // use Barryvdh\DomPDF\PDF;
 // use PDF;
@@ -17,27 +18,34 @@ class ContactController extends Controller
 
     public function index()
     {
-        $contactos = Contact::select('contacts.*', 'areas.nombrearea')
-            ->join('areas', 'contacts.area_id', '=', 'areas.id')
-            ->get();
+
+        $contactos = DB::select("CALL VER_CONTACTOS()");
+        // $contactos = collect(DB::select("CALL VER_CONTACTOS()"));
+
+        // $contactos = Contact::select('contacts.*', 'areas.nombrearea')
+        //     ->join('areas', 'contacts.area_id', '=', 'areas.id')
+        //     ->get();
+
 
         return view('contact.index', ['contactos' => $contactos, 'dato' => 0]);
     }
     public function filtro(Request $request)
     {
-        if ($request->nombre !== null) {
-            $contactos = Contact::select('contacts.*', 'areas.nombrearea')
-                ->join('areas', 'contacts.area_id', '=', 'areas.id')
-                ->where('contacts.nombre', 'like', '%' . $request->nombre . '%')
-                ->orWhere('contacts.apellido', 'like', '%' . $request->nombre . '%')
-                ->orWhere('contacts.telefono', 'like', '%' . $request->nombre . '%')
-                ->orWhere('areas.nombrearea', 'like', '%' . $request->nombre . '%')
-                ->get();
+        if ($request->filtro !== null) {
+            // $contactos = Contact::select('contacts.*', 'areas.nombrearea')
+            //     ->join('areas', 'contacts.area_id', '=', 'areas.id')
+            //     ->where('contacts.nombre', 'like', '%' . $request->nombre . '%')
+            //     ->orWhere('contacts.apellido', 'like', '%' . $request->nombre . '%')
+            //     ->orWhere('contacts.telefono', 'like', '%' . $request->nombre . '%')
+            //     ->orWhere('areas.nombrearea', 'like', '%' . $request->nombre . '%')
+            //     ->get();
+            $filtro = $request->filtro;
+            $contactos = DB::select('CALL FILTRO_CONTACTO(?)', array($filtro));
         } else {
 
             return redirect()->route('contact.index');
         }
-        return view('contact.index', ['contactos' => $contactos, 'dato' => $request->nombre]);
+        return view('contact.index', ['contactos' => $contactos, 'dato' => $request->filtro]);
     }
     public function create()
     {
@@ -47,9 +55,9 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'telefono' => 'required',
+            'nombre' => 'required|min:4',
+            'apellido' => 'required|min:4',
+            'telefono' => 'required|min:4',
         ]);
         Contact::create($request->all());
         return redirect()->route('contact.index')->with('mensaje', 'contacto creado');
@@ -68,9 +76,9 @@ class ContactController extends Controller
         $contact->update($request->all());
         return redirect()->route('contact.index')->with('mensaje', 'contacto actualizado');
     }
-    public function destroy(Contact $contact)
+    public function destroy($contact)
     {
-        Contact::find($contact->id)->delete();
+        Contact::find($contact)->delete();
         return redirect()->route('contact.index')->with('mensaje', 'contacto eliminado');
     }
     public function export($dato)
